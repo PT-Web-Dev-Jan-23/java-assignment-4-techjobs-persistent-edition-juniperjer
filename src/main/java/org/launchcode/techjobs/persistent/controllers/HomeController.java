@@ -35,6 +35,8 @@ public class HomeController {
 
         model.addAttribute("title", "My Jobs");
 
+        List jobs = (List<Job>) jobRepository.findAll();
+        model.addAttribute("jobs", jobs);
         return "index";
     }
 
@@ -42,6 +44,13 @@ public class HomeController {
     public String displayAddJobForm(Model model) {
         model.addAttribute("title", "Add Job");
         model.addAttribute(new Job());
+
+        List employers = (List<Employer>) employerRepository.findAll();
+        model.addAttribute("employers", employers);
+
+        List skills = (List<Skill>) skillRepository.findAll();
+        model.addAttribute("skills", skills);
+
         return "add";
     }
 
